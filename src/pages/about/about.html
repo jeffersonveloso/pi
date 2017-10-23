@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Mais
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-border>
+        <ion-list-header>
+          Páginas
+        </ion-list-header>
+    
+        <ion-item (click)="openDuvidas()">
+          <ion-icon name='help-circle' item-start></ion-icon>
+          Dúvidas Frequentes
+          <ion-icon name='ios-arrow-forward' item-end></ion-icon>
+        </ion-item>
+    
+        <ion-item (click)="openTermo()">
+          <ion-icon name='paper' item-start></ion-icon>
+          Termos de uso
+          <ion-icon name='ios-arrow-forward' item-end></ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <ion-list no-border>
+        <ion-list-header>
+          Social
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-icon name='star'></ion-icon>
+          Avalie na App Store
+        </ion-item>
+    
+        <ion-item (click)="goFacebookPage()">
+          <ion-icon name='logo-facebook'></ion-icon>
+          Página do Facebook
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name='logo-instagram'></ion-icon>
+          Página do instagram
+        </ion-item>
+      </ion-list>
+    
+</ion-content>

@@ -1,0 +1,8 @@
+{
+    "users":[{
+        "idUsuario":1,
+        "nome":"jose",
+        "telefone":"3199356677",
+        "senha":"123456"
+    }]
+}

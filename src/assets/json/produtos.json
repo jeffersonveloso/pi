@@ -1,0 +1,95 @@
+
+ { "produtos":[
+    {
+      "idProduto":1,
+      "empresa":1,
+      "nomeProduto":"Buquê de Rosas",
+      "valorProduto":"19,90",
+      "descricaoProduto": "Buquê com 38 rosas vermelhas",
+      "tipoProduto":1,
+      "categoria":1,
+      "imagens":[{
+        "img":"assets/img/img1.jpg"
+      },
+      {
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img3.jpg"
+      }]
+    },
+    {
+      "idProduto":2,
+      "empresa":2,
+      "nomeProduto":"Buquê de Margaridas",
+      "valorProduto":"19,90",
+      "descricaoProduto":"Buquê com 24 margaridas",
+      "tipoProduto":1,
+      "categoria":1,
+      "imagens":[{
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img3.jpg"
+      }]
+    },
+    {
+      "idProduto":3,
+      "empresa":3,
+      "nomeProduto":"Ursinho",
+      "valorProduto":"19,90",
+      "descricaoProduto": "Ursinho fofo",
+      "tipoProduto":2,
+      "categoria":2,
+      "imagens":[{
+        "img":"assets/img/img3.jpg"
+      },
+      {
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img3.jpg"
+      }]
+    },
+    {
+      "idProduto":4,
+      "empresa":3,
+      "nomeProduto":"Buquê de flores do campo",
+      "valorProduto":"19,90",
+      "descricaoProduto": "Ursinho fofo",
+      "tipoProduto":1,
+      "categoria":1,
+      "imagens":[{
+        "img":"assets/img/img4.jpg"
+      },
+      {
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img3.jpg"
+      }]
+      
+    },
+    {
+      "idProduto":5,
+      "empresa":3,
+      "nomeProduto":"Buquê de flores de jardim",
+      "valorProduto":"19,90",
+      "descricaoProduto": "Ursinho fofo",
+      "tipoProduto":1,
+      "categoria":1,
+      "imagens":[{
+        "img":"assets/img/img5.jpg"
+      },
+      {
+        "img":"assets/img/img2.jpg"
+      },
+      {
+        "img":"assets/img/img3.jpg"
+      }]
+    }
+  ]
+ }
