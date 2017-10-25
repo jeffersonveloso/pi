@@ -9,7 +9,7 @@ import{LoginPage} from '../../pages/login/login'
 export class MenuComponent {
  public autenticado:boolean;
   constructor(public modalCtrl: ModalController) {
-   this.autenticado=false;
+   this.autenticado=true;
   }
   openModal() {
     if(this.autenticado){

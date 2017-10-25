@@ -12,6 +12,7 @@ import { DetalhesPage } from '../detalhes/detalhes';
 })
 export class HomePage {
   grid = true;
+  buscarProduto: string = '';
   public listaprodutos: any = [];
   public semFiltro: Array<any>;
   public comFiltro: boolean = false;
@@ -71,7 +72,7 @@ export class HomePage {
   }
 
   public getProduct() {
-     return this.productProvider.getJSON().subscribe(
+    return this.productProvider.getJSON().subscribe(
       res => {
         this.listaprodutos = res.produtos;
         this.semFiltro = this.listaprodutos;
@@ -81,21 +82,21 @@ export class HomePage {
       });
   }
 
-  mostrarError(Error):void {
-    let error_message:string;
-    if(Error.status === 404){
-      error_message = 'Conteudo não encontrado, código de erro: '+Error.status;;
-    }else if(Error.status === 500){
-       error_message= ' : Estamos com alguns problemas, tente mais tarde! Código do erro: '+Error.status;
+  mostrarError(Error): void {
+    let error_message: string;
+    if (Error.status === 404) {
+      error_message = 'Conteudo não encontrado, código de erro: ' + Error.status;;
+    } else if (Error.status === 500) {
+      error_message = ' : Estamos com alguns problemas, tente mais tarde! Código do erro: ' + Error.status;
     }
     let toast = this.toastCtrl.create({
       message: error_message,
-      position:'middle',
+      position: 'middle',
       duration: 3000
     });
     toast.present();
   }
-  
+
   mostrarFiltro(): void {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Categorias:',
@@ -131,5 +132,17 @@ export class HomePage {
 
     actionSheet.present();
   }
+  filtrarProdutos(ev) {
+    var val = ev.target.value;
+    if (val && val.trim() != '') {
+      this.listaprodutos = this.semFiltro.filter((item) => {
+        return (item.nomeProduto.toLowerCase().indexOf(this.buscarProduto.toLowerCase()) > -1);
+      })
+      this.comFiltro = true;
 
+    } else if (this.buscarProduto === '') {
+      this.listaprodutos = this.semFiltro;
+      this.comFiltro = false;
+    }
+  }
 }

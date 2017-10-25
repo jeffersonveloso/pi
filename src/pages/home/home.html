@@ -21,7 +21,8 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <searchbar></searchbar>
+        <ion-searchbar placeholder="Pesquisar" [(ngModel)]="buscarProduto" 
+         (ionInput)="filtrarProdutos($event)"></ion-searchbar>
       </ion-col>
     </ion-row>
   </ion-grid>
