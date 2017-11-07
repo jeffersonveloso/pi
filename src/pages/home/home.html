@@ -1,28 +1,27 @@
 <ion-header>
-    <ion-navbar color="secondary">
-        <ion-grid>
-          <ion-row>
-              <ion-col col-2>
-                 <menu no-padding></menu>
-              </ion-col>
-            <ion-col col-8>
-             <h3 class="title-page">Flores Já</h3>
-            </ion-col>
-            <ion-col col-2 class="filtro">
-              <button ion-button icon-only color='orange' (click)="mostrarFiltro()">
-                <ion-icon name="ios-funnel"  [style.color]="comFiltro ? 'orange' : 'inherit'"></ion-icon>
-            </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-navbar>
+  <ion-navbar color="secondary">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <menu no-padding></menu>
+        </ion-col>
+        <ion-col col-8>
+          <h3 class="title-page">Flores Já</h3>
+        </ion-col>
+        <ion-col col-2 class="filtro">
+          <button ion-button icon-only color='orange' (click)="mostrarFiltro()">
+            <ion-icon name="ios-funnel" [style.color]="comFiltro ? 'orange' : 'inherit'"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <ion-searchbar placeholder="Pesquisar" [(ngModel)]="buscarProduto" 
-         (ionInput)="filtrarProdutos($event)"></ion-searchbar>
+        <ion-searchbar placeholder="Pesquisar" [(ngModel)]="buscarProduto" (ionInput)="filtrarProdutos($event)"></ion-searchbar>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -32,8 +31,7 @@
   </ion-refresher>
 
   <ion-row no-padding>
-    <ion-col *ngFor="let produtos of listaprodutos let i = index" 
-    [attr.col-6]="grid ? true : null" [attr.col-12]="!grid ? true : null">
+    <ion-col *ngFor="let produtos of listaprodutos let i = index" [attr.col-6]="grid ? true : null" [attr.col-12]="!grid ? true : null">
       <ion-card>
         <ion-card-content>
           <div class='premiumProduct'>
@@ -62,7 +60,7 @@
               </button>
             </ion-col>
             <ion-col col-6>
-              <button ion-button icon-center color='orange' full>
+              <button ion-button icon-center color='orange' (click)="carrinho.addProduto(produtos)" full>
                 <ion-icon name="cart" large></ion-icon>
               </button>
             </ion-col>

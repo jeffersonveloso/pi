@@ -1,0 +1,42 @@
+<!--
+  Generated template for the CadastroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title text-center>cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <form (ngSubmit)="addUser()">
+        <ion-col>
+          <ion-list>
+            <ion-list-header>Dados de Login</ion-list-header>
+            <ion-item>
+              <ion-icon name="person" item-left></ion-icon>
+              <ion-label stacked>Login</ion-label>
+              <ion-input type="text" name="login" [(ngModel)]="model.loginUser"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="key" item-left></ion-icon>
+              <ion-label stacked>Senha</ion-label>
+              <ion-input type="text" name="password" [(ngModel)]="model.password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <div text-center padding>
+          <button type="submit" full ion-button>Cadastrar</button>
+        </div>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>

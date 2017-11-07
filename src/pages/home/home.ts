@@ -1,3 +1,4 @@
+import { CartProvider } from './../../providers/cart/cart';
 import { Component } from '@angular/core';
 import { LoadingController, NavController, ActionSheetController, ToastController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
@@ -22,7 +23,8 @@ export class HomePage {
     private productProvider: ProductProvider,
     public loadingCtrl: LoadingController,
     public actionSheetCtrl: ActionSheetController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public carrinho:CartProvider
   ) {
     this.getProduct();
 

@@ -1,3 +1,4 @@
+import { CadastroUserPage } from './../cadastro-user/cadastro-user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController  } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
@@ -26,5 +27,7 @@ export class LoginPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  
+  cadastrar(){
+    this.navCtrl.push(CadastroUserPage);
+  }
 }

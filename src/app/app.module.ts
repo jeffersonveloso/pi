@@ -1,3 +1,4 @@
+import { CadastroUserPageModule } from './../pages/cadastro-user/cadastro-user.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -26,6 +27,7 @@ import { StorageProvider } from '../providers/storage/storage';
 import {SearchbarComponent} from '../components/searchbar/searchbar';
 import {MenuComponent} from '../components/menu/menu';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
+import { UserInfoProvider } from '../providers/user-info/user-info';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
     DuvidasPageModule,
     FeedPageModule,
     CartPageModule,
-    LoginPageModule
+    LoginPageModule,
+    CadastroUserPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,7 +67,8 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
     ProductProvider,
     CartProvider,
     StorageProvider,
-    LoginServiceProvider
+    LoginServiceProvider,
+    UserInfoProvider
   ]
 })
 export class AppModule {}
