@@ -21,6 +21,7 @@ produtos:any[]=[];
   }
 
   addProduto(item:any ={}){
+    this.produtos = JSON.parse(localStorage.getItem('carrinho')) || [];
     if(!item.idProduto){
       console.log("error é necessario um produto");
     }else{
@@ -30,7 +31,7 @@ produtos:any[]=[];
           row.quantidade++;
           existe =true;
         }
-      })
+      });
       if(!existe){
         this.novoProduto.produto =item;
         this.novoProduto.quantidade =1;

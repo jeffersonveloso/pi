@@ -14,14 +14,22 @@
 
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-          <ion-thumbnail item-start>
-            <img src="assets/img/img1.jpg">
-          </ion-thumbnail>
-          <h2>Buquê de margaridas</h2>
-          <p>Buquê de margaridas vindas de Goiás</p>
-          <button ion-button clear item-end>Ver</button>
-        </ion-item>
-      </ion-list>
+  <ion-list>
+    <ion-item-sliding *ngFor="let produto of cart_list; let index = index">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="{{produto.produto.imagens[0].img}}">
+        </ion-thumbnail>
+        <h2>{{produto.produto.nomeProduto}}</h2>
+        <p>{{produto.produto.descricaoProduto}}</p>
+        <button ion-button clear item-end>Ver</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
