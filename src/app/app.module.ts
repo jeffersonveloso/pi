@@ -22,7 +22,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProductProvider } from '../providers/product/product';
 import { CartProvider } from '../providers/cart/cart';
-import { StorageProvider } from '../providers/storage/storage';
 
 import {SearchbarComponent} from '../components/searchbar/searchbar';
 import {MenuComponent} from '../components/menu/menu';
@@ -66,7 +65,6 @@ import { UserInfoProvider } from '../providers/user-info/user-info';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductProvider,
     CartProvider,
-    StorageProvider,
     LoginServiceProvider,
     UserInfoProvider
   ]

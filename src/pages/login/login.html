@@ -17,15 +17,15 @@
     </ion-row>
     <ion-item>
       <ion-label fixed>E-mail</ion-label>
-      <ion-input type="text" [(ngModel)]="email"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.senha"></ion-input>
     </ion-item>
   </ion-list>
-  <div padding>
-    <button ion-button (click)="cadastrar()"> Cadastrar</button>
-    <button ion-button (click)="login()"> Login</button>
+  <div text-center>
+    <button ion-button (click)="login()" color="secondary" outline> Login</button>
+    <button ion-button (click)="cadastrar()" outline> Cadastrar</button>
   </div>
 </ion-content>

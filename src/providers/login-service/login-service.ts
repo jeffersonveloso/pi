@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,13 +10,20 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class LoginServiceProvider {
-  private urlBase:string = 'assets/json/';
+  private urlBase: string = 'http://127.0.0.1:8080/cb/';
   constructor(public http: Http) {
     console.log('Hello LoginServiceProvider Provider');
   }
 
-  public getUsers(){
-    this.http.get(this.urlBase+"users.json").retry(3)
-    .map(res =>res.json());
+  public autenticarUsuario(dsEmail, dsPassword) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    //let options = new RequestOptions({ headers: headers, method: 'GET'});
+
+    return this.http.get(this.urlBase + 'usuario/login-user/'+dsEmail+'/'+dsPassword, { headers: headers})
+      .map(res => {
+        if (res) {
+          return { response: res }
+        }
+      });
   }
 }

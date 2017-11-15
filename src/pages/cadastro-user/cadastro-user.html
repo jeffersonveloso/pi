@@ -17,8 +17,8 @@
 
   <ion-grid>
     <ion-row>
-      <form (ngSubmit)="addUser()">
-        <ion-col>
+      <ion-col col-12>
+        <ion-col *ngIf="!dadosPessoais">
           <ion-list>
             <ion-list-header>Dados de Login</ion-list-header>
             <ion-item>
@@ -29,14 +29,54 @@
             <ion-item>
               <ion-icon name="key" item-left></ion-icon>
               <ion-label stacked>Senha</ion-label>
-              <ion-input type="text" name="password" [(ngModel)]="model.password"></ion-input>
+              <ion-input type="password" name="password" [(ngModel)]="model.password"></ion-input>
             </ion-item>
           </ion-list>
+          <div>
+            <button (click)="addUser()" full ion-button>Cadastrar</button>
+          </div>
         </ion-col>
-        <div text-center padding>
-          <button type="submit" full ion-button>Cadastrar</button>
+        <div *ngIf="dadosPessoais">
+          <ion-list>
+            <ion-list-header> Dados Pessoais</ion-list-header>
+            <ion-item>
+              <ion-icon name="person" item-left></ion-icon>
+              <ion-label stacked>Nome completo</ion-label>
+              <ion-input type="text" name="nome" [(ngModel)]="modelPessoais.nomeCompleto"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="calendar" item-left></ion-icon>
+              <ion-label stacked>Data nascimento</ion-label>
+              <ion-input type="date" name="dataNasc" [(ngModel)]="modelPessoais.dataNasc"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="home" item-left></ion-icon>
+              <ion-label stacked>Endereço</ion-label>
+              <ion-input type="text" name="endereco" [(ngModel)]="modelPessoais.endereco"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="home" item-left></ion-icon>
+              <ion-label stacked>Número</ion-label>
+              <ion-input type="number" name="numero"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="home" item-left></ion-icon>
+              <ion-label stacked>Cidade</ion-label>
+              <ion-input type="text" name="cidade"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="home" item-left></ion-icon>
+              <ion-label stacked>UF</ion-label>
+              <ion-select name="uf">
+                <ion-option>mg</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <div *ngIf="dadosPessoais">
+            <button type="submit" full ion-button>Completar perfil</button>
+          </div>
         </div>
-      </form>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

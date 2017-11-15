@@ -1,0 +1,79 @@
+<!--
+  Generated template for the FinalizarPedidoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>finalizar-pedido</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-card>
+        <ion-card-title text-center>Resumo do Pedido</ion-card-title>
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-6>
+              ITENS DO PEDIDO
+            </ion-col>
+            <ion-col col-3>QTDE</ion-col>
+            <ion-col col-3>Subtotal</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+         <div *ngFor="let produto of produtos">
+           <ion-row>
+           <ion-col col-6>
+            <p>{{produto.produto.nomeProduto}}</p>
+          </ion-col>
+          <ion-col col-3>
+             <p text-center>{{produto.quantidade}}</p>
+            </ion-col>
+            <ion-col col-3>
+             <p text-center>{{produto.subtotal | moneyptbr}}</p>
+            </ion-col>
+            </ion-row>
+         </div>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <h2>Total: R$ {{totalPedido | moneyptbr}}</h2>
+          </ion-col>
+        </ion-row>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-list-header text-center>Métodos de pagamento</ion-list-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col text-center col-12>
+                    <ion-col col-3>
+                        <button outline ion-button>BOLETO</button>
+                      </ion-col>
+                  <ion-col col-3>
+                    <button outline ion-button>Paypal</button>
+                  </ion-col>
+                  <ion-col col-3>
+                    <button outline ion-button>
+                      <ion-icon name="card"></ion-icon>
+                    </button>
+                  </ion-col>
+                </ion-col>
+                <ion-col col-12 text-center>
+                  <hr>
+                    <button ion-button>Finalizar</button>
+                </ion-col>
+              </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

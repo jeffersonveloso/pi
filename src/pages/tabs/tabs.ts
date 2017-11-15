@@ -1,7 +1,8 @@
+import { Events } from 'ionic-angular';
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { HomePage } from '../home/home';
+import {AboutPage } from '../about/about';
+import {HomePage } from '../home/home';
 import {FeedPage} from '../feed/feed';
 import {CartPage} from '../cart/cart';
 
@@ -9,13 +10,18 @@ import {CartPage} from '../cart/cart';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  cartQnt=0;
   tab1Root = HomePage;
   tab2Root = FeedPage;
   tab3Root = CartPage;
   tab4Root = AboutPage;
 
-  constructor() {
-
+  constructor(public events:Events) {
+    this.events.subscribe('cart:updated', (count) => {
+      this.cartQnt = count;
+    });
+    let cart_list = JSON.parse(localStorage.getItem('carrinho')) || [];;
+    this.cartQnt = cart_list.length;
   }
+
 }

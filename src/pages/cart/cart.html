@@ -14,22 +14,47 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item-sliding *ngFor="let produto of cart_list; let index = index">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="{{produto.produto.imagens[0].img}}">
-        </ion-thumbnail>
-        <h2>{{produto.produto.nomeProduto}}</h2>
-        <p>{{produto.produto.descricaoProduto}}</p>
-        <button ion-button clear item-end>Ver</button>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-          Remover
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-grid>
+    <ion-list>
+      <ion-item-sliding *ngFor="let produto of cart_list; let index = index">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="{{produto.produto.imagens[0].img}}">
+          </ion-thumbnail>
+          <h2>{{produto.produto.nomeProduto}}</h2>
+          <p>{{produto.produto.descricaoProduto}}</p>
+          <button ion-button clear (click)="verDetalhes(produto)" item-end>Ver</button>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removerProduto(index)">
+            <ion-icon name="trash"></ion-icon>
+            Remover
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col text-center col-12>
+              <ion-col col-2>
+                <button outline ion-button>Paypal</button>
+              </ion-col>
+              <ion-col col-2>
+                <button outline ion-button>
+                  <ion-icon name="card"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button ion-button (click)="finalizarPedido()" full>Finalizar pedido</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
 </ion-content>

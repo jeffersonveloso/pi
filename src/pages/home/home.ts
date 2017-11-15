@@ -33,8 +33,7 @@ export class HomePage {
   ionViewDidLoad() {
 
   }
-  ngOnInit() {
-  }
+
   changeGrid() {
     this.grid = !this.grid;
   }
@@ -48,7 +47,7 @@ export class HomePage {
     loading.present();
 
     setTimeout(() => {
-      this.navCtrl.push(DetalhesPage, {
+      this.navCtrl.push('DetalhesPage', {
         produto: produto,
         index: indexProduto
       });
@@ -134,6 +133,7 @@ export class HomePage {
 
     actionSheet.present();
   }
+  
   filtrarProdutos(ev) {
     var val = ev.target.value;
     if (val && val.trim() != '') {

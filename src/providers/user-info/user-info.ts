@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http} from '@angular/http';
+import { Http,Headers,RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -9,7 +9,9 @@ export class UserInfoProvider {
   
   }
   public insertUser(model) {
-    return this.http.post(this.urlBase + 'usuario/save-usuario', model).map(res => {
+    let headers = new Headers({'Content-Type':'application/json'});
+    let options = new RequestOptions({headers:headers,method:'POST'});
+    return this.http.post(this.urlBase + 'usuario/save-usuario',model,options).map(res => {
       if (res) {
         return { response : res }
       }
@@ -17,24 +19,16 @@ export class UserInfoProvider {
   }
 }
 export class cadastroUser {
-
-  idUser: number;
   loginUser: String;
   password: String;
-  tipoUsuario: TipoUsuario;
-  dataCriacao: Date;
-  ativo: Boolean;
-
-  constructor() {
-    this.tipoUsuario = new TipoUsuario;
-  }
+  dataCriacao: String;
+  ativo: true;
+  tipoUsuario:{}
 }
-export class TipoUsuario {
-
-  idTipoUsuario: 1;
-  descricao: String;
-
-  constructor() {
-  
-  }
+export class dadosPessoais{
+  nomeCompleto:string;
+  endereco:string;
+  id_usuario:number;
+  dataNasc:string;
 }
+
