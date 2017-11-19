@@ -1,3 +1,7 @@
+import { EnderecoService } from './../pages/cadastro-user/endereco.service';
+import { DadosPessoaService } from './../pages/cadastro-user/dados-pessoa.service';
+import { AutenticacaoService } from './../service/autenticacao.service';
+import { LoginService } from './../pages/login/login.service';
 import { CadastroUserPageModule } from './../pages/cadastro-user/cadastro-user.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -66,7 +70,11 @@ import { UserInfoProvider } from '../providers/user-info/user-info';
     ProductProvider,
     CartProvider,
     LoginServiceProvider,
-    UserInfoProvider
+    UserInfoProvider,
+    LoginService,
+    AutenticacaoService,
+    DadosPessoaService,
+    EnderecoService
   ]
 })
 export class AppModule {}

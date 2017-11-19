@@ -18,17 +18,3 @@ export class UserInfoProvider {
     });
   }
 }
-export class cadastroUser {
-  loginUser: String;
-  password: String;
-  dataCriacao: String;
-  ativo: true;
-  tipoUsuario:{}
-}
-export class dadosPessoais{
-  nomeCompleto:string;
-  endereco:string;
-  id_usuario:number;
-  dataNasc:string;
-}
-

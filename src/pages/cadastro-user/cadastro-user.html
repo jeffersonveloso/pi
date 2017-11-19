@@ -42,38 +42,36 @@
             <ion-item>
               <ion-icon name="person" item-left></ion-icon>
               <ion-label stacked>Nome completo</ion-label>
-              <ion-input type="text" name="nome" [(ngModel)]="modelPessoais.nomeCompleto"></ion-input>
+              <ion-input type="text" name="nome" [(ngModel)]="dadosPessoa.nome"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="calendar" item-left></ion-icon>
               <ion-label stacked>Data nascimento</ion-label>
-              <ion-input type="date" name="dataNasc" [(ngModel)]="modelPessoais.dataNasc"></ion-input>
+              <ion-input type="date" name="nascimento" [(ngModel)]="dadosPessoa.nascimento"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="home" item-left></ion-icon>
-              <ion-label stacked>Endereço</ion-label>
-              <ion-input type="text" name="endereco" [(ngModel)]="modelPessoais.endereco"></ion-input>
+              <ion-label stacked>Rua</ion-label>
+              <ion-input type="text" name="endereco" [(ngModel)]="dadosPessoa.endereco.rua"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="home" item-left></ion-icon>
               <ion-label stacked>Número</ion-label>
-              <ion-input type="number" name="numero"></ion-input>
+              <ion-input type="number" name="numero" [(ngModel)]="dadosPessoa.endereco.numero"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="home" item-left></ion-icon>
-              <ion-label stacked>Cidade</ion-label>
-              <ion-input type="text" name="cidade"></ion-input>
+              <ion-label stacked>Bairro</ion-label>
+              <ion-input type="text" name="bairro" [(ngModel)]="dadosPessoa.endereco.bairro"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="home" item-left></ion-icon>
-              <ion-label stacked>UF</ion-label>
-              <ion-select name="uf">
-                <ion-option>mg</ion-option>
-              </ion-select>
+              <ion-label stacked>Complemento</ion-label>
+              <ion-input type="text" name="complemento" [(ngModel)]="dadosPessoa.endereco.complemento"></ion-input>
             </ion-item>
           </ion-list>
           <div *ngIf="dadosPessoais">
-            <button type="submit" full ion-button>Completar perfil</button>
+            <button (click)="salvaDadosPessoa()" full ion-button>Salvar dados pessoais</button>
           </div>
         </div>
       </ion-col>

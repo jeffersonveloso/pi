@@ -1,4 +1,12 @@
-import { cadastroUser, UserInfoProvider, dadosPessoais } from './../../providers/user-info/user-info';
+import { HomePage } from './../home/home';
+import { DadosPessoaService } from './dados-pessoa.service';
+import { Municipio } from './../../domain/municipio';
+import { Uf } from './../../domain/uf';
+import { DadosPessoais } from './../../domain/dados-pessoa';
+import { AutenticacaoService } from './../../service/autenticacao.service';
+import { TipoUsuario } from './../../domain/tipo-usuario';
+import { Usuario } from './../../domain/usuario';
+import { UserInfoProvider } from './../../providers/user-info/user-info';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
@@ -8,29 +16,35 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
   templateUrl: 'cadastro-user.html',
 })
 export class CadastroUserPage {
-  model: cadastroUser;
-  modelPessoais: dadosPessoais;
+  model: Usuario = new Usuario;
+  tipoUsuario: TipoUsuario = new TipoUsuario;
   dadosPessoais: Boolean = false;
+  dadosPessoa: DadosPessoais = new DadosPessoais;
   resultado: any;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public userInfo: UserInfoProvider,
-    public loadCtrl: LoadingController
-  ){
-    this.model = new cadastroUser();
-    this.modelPessoais = new dadosPessoais();
+    public loadCtrl: LoadingController,
+    private autenticacaoService: AutenticacaoService,
+    private dadosPessoaService: DadosPessoaService
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroUserPage');
   }
 
-  private addUser() {
+  tipoUsuarioComum() {
+    this.tipoUsuario.idTipoUsuario = TipoUsuario.ID_USUARIO_COMUM;
+  }
+
+  addUser() {
+    this.tipoUsuarioComum();
     this.model.ativo = true;
-    this.model.dataCriacao = "2012-04-23";
-    this.model.tipoUsuario = { "idTipoUsuario": "1" };
+    this.model.dataCriacao = new Date;
+    this.model.tipoUsuario = this.tipoUsuario;
 
     let loading = this.loadCtrl.create({
       spinner: 'bubbles',
@@ -39,22 +53,44 @@ export class CadastroUserPage {
     loading.present();
 
     this.userInfo.insertUser(this.model).subscribe(
-      data => {
-        if (data.response.status == 200) {
-          this.resultado = data.response.json();
-          console.log(this.resultado);
-          this.dadosPessoais = true;
-        } else {
-          console.log(data.response);
-        }
+      usuario => {
+        this.model = usuario.response.json();
+        this.autenticacaoService.insertUser(this.model);
+        this.dadosPessoais = true;
       },
       err => {
         console.log(err);
       },
       () => {
-         loading.dismiss();
+        loading.dismiss();
       }
     );
+  }
+
+  uf(): Uf {
+    const uf: Uf = new Uf;
+    uf.idUf = 1;
+    return uf;
+  }
+
+  municipio(): Municipio {
+    const municipio: Municipio = new Municipio;
+    municipio.idMunicipio = 1;
+    municipio.uf = this.uf();
+    return municipio;
+  }
+
+  salvaDadosPessoa() {
+    this.dadosPessoa.usuario = this.autenticacaoService.getUser();
+    this.dadosPessoa.endereco.municipio = this.municipio();
+
+    this.dadosPessoaService.save(this.dadosPessoa).$observable.subscribe(res => {
+      this.dadosPessoa = res;
+      this.navCtrl.push(HomePage);
+    },
+      error => {
+        console.log('Error ao salvar os dados gerais da pessoa.')
+      });
   }
 
 }
