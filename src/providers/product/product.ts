@@ -5,15 +5,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/retry';
 @Injectable()
 export class ProductProvider {
-  private urlBase:string = 'assets/json/';
+  private urlBase:string = 'http://homologacaoholic.com.br:10923/cb/';
   constructor(public http: Http) {
 
   }
   public getJSON() {
-    /*buscar no servidor
-    return this.http.get("https://www.reddit.com/r/gifs/top/.json?limit=10&sort=hot");
-    .do(res => console.log(res));*/
-    return this.http.get(this.urlBase+'produtos.json').retry(3)
+    return this.http.get(this.urlBase+'produto/get-produtos-for-home').retry(3)
     .map(res =>res.json());
   }
 }

@@ -7,9 +7,9 @@ import{LoginPage} from '../../pages/login/login'
   templateUrl: 'menu.html'
 })
 export class MenuComponent {
- public autenticado:boolean;
+  autenticado:string;
   constructor(public modalCtrl: ModalController) {
-   this.autenticado=false;
+    this.autenticado = localStorage.getItem('autenticado');
   }
   openModal() {
     if(this.autenticado){

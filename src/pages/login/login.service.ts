@@ -17,7 +17,7 @@ export class LoginService extends Resource {
     headers: Headers;
 
     @ResourceAction({
-        url: 'http://127.0.0.1:8080/cb/usuario/login-user/{!dsEmail}/{!dsPassword}'
+        url: 'http://homologacaoholic.com.br:10923/cb/usuario/login-user/{!dsEmail}/{!dsPassword}'
     })
     loginUser: ResourceMethod<{ dsEmail: any, dsPassword: any }, Usuario>;
 

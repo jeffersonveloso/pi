@@ -4,6 +4,7 @@ import { CadastroUserPage } from './../cadastro-user/cadastro-user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController, LoadingController  } from 'ionic-angular';
 import {Md5} from 'ts-md5/dist/md5';
+import { HomePage } from '../home/home';
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -37,9 +38,12 @@ export class LoginPage {
     this.loginService.loginUser({ dsEmail: this.usuario.loginUser, dsPassword: this.usuario.password }).$observable.subscribe(
       usuario => {
         this.usuario = usuario;
+        localStorage.setItem('autenticado',"true");
+        this.navCtrl.setRoot(HomePage);
       },
       erro => {
         console.log('Error ao logar!');
+        localStorage.setItem('autenticado',"false");
       }
     );
   }

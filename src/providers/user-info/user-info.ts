@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserInfoProvider {
-  private urlBase: string = 'http://127.0.0.1:8080/cb/';
+  private urlBase: string = 'http://homologacaoholic.com.br:10923/cb/';
   constructor(public http: Http) {
   
   }

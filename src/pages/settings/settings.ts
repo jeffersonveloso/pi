@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
 
 /**
  * Generated class for the SettingsPage page.
@@ -14,9 +14,16 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {
-
+  cartQnt=0;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public events:Events
+  ) {
+    this.events.subscribe('cart:updated', (count) => {
+      this.cartQnt = count;
+    });
   }
 
   ionViewDidLoad() {

@@ -18,7 +18,7 @@ export class DadosPessoaService extends Resource {
 
     @ResourceAction({
         method: RequestMethod.Post,
-        url: 'http://127.0.0.1:8080/cb/usuario-comum/save-usuario-comum'
+        url: 'http://homologacaoholic.com.br:10923/cb/usuario-comum/save-usuario-comum'
     })
     save: ResourceMethod<DadosPessoais, any>;
 
@@ -27,8 +27,7 @@ export class DadosPessoaService extends Resource {
         this.getResourceOptions().headers['Authorization'] = this.autenticacaoService.getAuthorization();
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-        this.options = new RequestOptions({ headers: this.headers });
-        
+        this.options = new RequestOptions({ headers: this.headers }); 
       }
 
 }

@@ -9,6 +9,7 @@ import { Usuario } from './../../domain/usuario';
 import { UserInfoProvider } from './../../providers/user-info/user-info';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { MenuComponent } from '../../components/menu/menu';
 
 @IonicPage()
 @Component({
@@ -60,6 +61,7 @@ export class CadastroUserPage {
       },
       err => {
         console.log(err);
+        loading.dismiss();
       },
       () => {
         loading.dismiss();
@@ -86,7 +88,8 @@ export class CadastroUserPage {
 
     this.dadosPessoaService.save(this.dadosPessoa).$observable.subscribe(res => {
       this.dadosPessoa = res;
-      this.navCtrl.push(HomePage);
+      localStorage.setItem('autenticado',"true");
+      this.navCtrl.setRoot(HomePage);
     },
       error => {
         console.log('Error ao salvar os dados gerais da pessoa.')

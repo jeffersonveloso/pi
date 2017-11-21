@@ -33,16 +33,9 @@
   <ion-row no-padding>
     <ion-col *ngFor="let produtos of listaprodutos let i = index" [attr.col-6]="grid ? true : null" [attr.col-12]="!grid ? true : null">
       <ion-card>
+          <img src="data:image/png;base64,{{produtos.imagemProduto}}"/>
         <ion-card-content>
-          <div class='premiumProduct'>
-            <p text-center>Premium</p>
-          </div>
-          <ion-slides class="image-slider" loop="true" slidesPerView="1">
-            <ion-slide *ngFor="let fotos of produtos.imagens">
-              <img [src]="fotos.img" class="thumb-img" imageViewer/>
-            </ion-slide>
-          </ion-slides>
-          <ion-card-title text-center text-wrap>
+          <ion-card-title text-center>
             {{produtos.nomeProduto}}
           </ion-card-title>
         </ion-card-content>

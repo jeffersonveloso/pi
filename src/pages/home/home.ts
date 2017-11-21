@@ -2,7 +2,6 @@ import { CartProvider } from './../../providers/cart/cart';
 import { Component } from '@angular/core';
 import { LoadingController, NavController, ActionSheetController, ToastController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
-import { DetalhesPage } from '../detalhes/detalhes';
 
 @Component({
   selector: 'page-home',
@@ -29,11 +28,6 @@ export class HomePage {
     this.getProduct();
 
   }
-
-  ionViewDidLoad() {
-
-  }
-
   changeGrid() {
     this.grid = !this.grid;
   }
@@ -75,7 +69,7 @@ export class HomePage {
   public getProduct() {
     return this.productProvider.getJSON().subscribe(
       res => {
-        this.listaprodutos = res.produtos;
+        this.listaprodutos = res;
         this.semFiltro = this.listaprodutos;
       },
       Error => {

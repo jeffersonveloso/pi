@@ -19,7 +19,7 @@
       <ion-item-sliding *ngFor="let produto of cart_list; let index = index">
         <ion-item>
           <ion-thumbnail item-start>
-            <img src="{{produto.produto.imagens[0].img}}">
+            <img src="data:image/png;base64,{{produto.produto.imagemProduto}}"/>
           </ion-thumbnail>
           <h2>{{produto.produto.nomeProduto}}</h2>
           <p>{{produto.produto.descricaoProduto}}</p>
@@ -36,18 +36,6 @@
     <ion-card>
       <ion-card-content>
         <ion-grid>
-          <ion-row>
-            <ion-col text-center col-12>
-              <ion-col col-2>
-                <button outline ion-button>Paypal</button>
-              </ion-col>
-              <ion-col col-2>
-                <button outline ion-button>
-                  <ion-icon name="card"></ion-icon>
-                </button>
-              </ion-col>
-            </ion-col>
-          </ion-row>
           <ion-row>
             <ion-col>
               <button ion-button (click)="finalizarPedido()" full>Finalizar pedido</button>
