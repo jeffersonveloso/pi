@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-settings',
@@ -15,21 +7,26 @@ import { IonicPage, NavController, NavParams, ViewController, Events } from 'ion
 })
 export class SettingsPage {
   cartQnt=0;
+  produtos:any[]=[];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public events:Events
   ) {
-    this.events.subscribe('cart:updated', (count) => {
-      this.cartQnt = count;
-    });
+  
   }
-
-  ionViewDidLoad() {
-
+  ionViewDidEnter(){
+    this.produtos = JSON.parse(localStorage.getItem('carrinho')) || [];
+    this.cartQnt = this.produtos.length;
+  }
+  pushCartPage(){
+    this.navCtrl.push('CartPage');
   }
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+  pushMeusPedidos(){
+    this.navCtrl.push('MeusPedidosPage');
   }
 }

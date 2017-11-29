@@ -1,0 +1,63 @@
+<!--
+  Generated template for the MeusPedidosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='secondary'>
+    <ion-title>Meus Pedidos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-card *ngFor="let pedido of pedidos_list.Pedidos; let indexPed = index ">
+        <ion-card-content>
+          <ion-row>
+            <ion-item>
+              <p item-left text-center>Data do pedido {{pedido.dadosPedido.dataEntrega}}</p>
+              <p item-left text-center>Data do Entrega {{pedido.dadosPedido.dataEntrega}}</p>
+            </ion-item>
+            <ion-item>
+              <p item-left>Total: R$ {{pedido.dadosPedido.totalPedido | moneyptbr}}  </p>
+              <p item-left>Parcelamento: {{pedido.dadosPedido.totalPedido/pedido.dadosPedido.parcelamento}}x 
+                de R$ {{pedido.dadosPedido.parcelamento | moneyptbr}} </p>
+            </ion-item>
+            <ion-item>
+              <p item-left>Endereco {{pedido.dadosPedido.endereco}}</p>
+              <p item-left>Número {{pedido.dadosPedido.numero}}</p>
+            </ion-item>
+            <ion-item>
+                <p item-left>Complemento: {{pedido.dadosPedido.complemento}}</p>
+            </ion-item>
+            <ion-item>
+                <p item-left>Mensagem do Cartão: {{pedido.dadosPedido.mensagem}}</p>
+            </ion-item>
+          </ion-row>
+          <hr>
+          <ion-row>
+            <ion-list-header text-center>Produtos</ion-list-header>
+            <ion-list *ngFor="let produtos of pedido.produtos">
+                <ion-thumbnail item-start>
+                    <img src="data:image/png;base64,{{produtos.produto.imagemProduto}}"/>
+                </ion-thumbnail>
+                <ion-item>
+                    <p>Nome: {{produtos.produto.nomeProduto}}</p>
+                    <p>Descrição: {{produtos.produto.descricaoProduto}}</p>
+                </ion-item>
+                <ion-item>
+                    <p>Subtotal deste produto: R$ {{produtos.subtotal | moneyptbr}}</p>
+                    <p>Quantidade: {{produtos.quantidade}}</p>
+                </ion-item>
+            </ion-list>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

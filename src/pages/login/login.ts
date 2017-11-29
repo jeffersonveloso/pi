@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController, LoadingController  } from 'ionic-angular';
 import {Md5} from 'ts-md5/dist/md5';
 import { HomePage } from '../home/home';
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -31,7 +32,7 @@ export class LoginPage {
     this.viewCtrl.dismiss();
   }
   cadastrar(){
-    this.navCtrl.push(CadastroUserPage);
+    this.navCtrl.push('CadastroUserPage');
   }
   
   login() {

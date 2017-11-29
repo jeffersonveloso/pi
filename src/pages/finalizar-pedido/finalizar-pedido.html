@@ -6,74 +6,123 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>finalizar-pedido</ion-title>
+  <ion-navbar color='secondary'>
+    <ion-title text-center >Finalizar Pedido</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
+{{produtos|json}}
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-card>
-        <ion-card-title text-center>Resumo do Pedido</ion-card-title>
-        <ion-card-content>
-          <ion-row>
-            <ion-col col-6>
-              ITENS DO PEDIDO
-            </ion-col>
-            <ion-col col-3>QTDE</ion-col>
-            <ion-col col-3>Subtotal</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12>
-         <div *ngFor="let produto of produtos">
-           <ion-row>
-           <ion-col col-6>
-            <p>{{produto.produto.nomeProduto}}</p>
-          </ion-col>
-          <ion-col col-3>
-             <p text-center>{{produto.quantidade}}</p>
-            </ion-col>
-            <ion-col col-3>
-             <p text-center>{{produto.subtotal | moneyptbr}}</p>
-            </ion-col>
-            </ion-row>
-         </div>
-        </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <h2>Total: R$ {{totalPedido | moneyptbr}}</h2>
-          </ion-col>
-        </ion-row>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-list-header text-center>Métodos de pagamento</ion-list-header>
-        <ion-card-content>
+      <ion-col col-12>
+        <ion-card>
+          <ion-list-header text-center>Resumo do Pedido</ion-list-header>
+          <ion-card-content>
             <ion-row>
-                <ion-col text-center col-12>
+              <ion-col col-6>
+                ITENS DO PEDIDO
+              </ion-col>
+              <ion-col col-3 text-center>QTDE</ion-col>
+              <ion-col col-3 text-center>Subtotal</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <div *ngFor="let produto of produtos">
+                  <ion-row>
+                    <ion-col col-6>
+                      <p>{{produto.produto.nomeProduto}}</p>
+                    </ion-col>
                     <ion-col col-3>
-                        <button outline ion-button>BOLETO</button>
-                      </ion-col>
-                  <ion-col col-3>
+                      <p text-center>{{produto.quantidade}}</p>
+                    </ion-col>
+                    <ion-col col-3>
+                      <p text-center>{{produto.subtotal | moneyptbr}}</p>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <h2>Total: R$ {{dadosPedido.totalPedido | moneyptbr}}</h2>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+            <ion-card>
+              <ion-card-content>
+                <ion-item>
+                  <ion-label stacked>Data de entrega</ion-label>
+                  <ion-icon name="calendar" item-left></ion-icon>
+                  <ion-input type="date" name="dataEntrega" [(ngModel)]="dadosPedido.dataEntrega" placeholder="dd/mm/aaaa"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Endereço</ion-label>
+                  <ion-input type="text" name="endereco" [(ngModel)]="dadosPedido.endereco"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Número</ion-label>
+                  <ion-input type="number" name="numero" [(ngModel)]="dadosPedido.numero"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Complemento</ion-label>
+                  <ion-input type="text" name="complemento" [(ngModel)]="dadosPedido.complemento"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Mensagem:</ion-label>
+                  <ion-textarea name="mensagem" [(ngModel)]="dadosPedido.mensagem"></ion-textarea>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          <ion-card>
+            <ion-list-header text-center>Métodos de pagamento</ion-list-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col *ngIf="!outroMetodo">
+                  <span ion-item>Cartão com final: {{cardCredit}} - Validade: {{validade}}</span>
+                </ion-col>
+                <ion-col col-12>
+                  <ion-item>
+                    <ion-label>Mudar método de pagamento</ion-label>
+                    <ion-checkbox type="checkbox" name="outroMetodo" [(ngModel)]="outroMetodo"></ion-checkbox>
+                  </ion-item>
+                </ion-col>
+                <ion-col *ngIf="outroMetodo == true || cartaoGravado == []" text-center col-12>
+                  <ion-col col-6>
                     <button outline ion-button>Paypal</button>
                   </ion-col>
-                  <ion-col col-3>
-                    <button outline ion-button>
+                  <ion-col col-6>
+                    <button outline ion-button (click)="openModal()">
                       <ion-icon name="card"></ion-icon>
                     </button>
                   </ion-col>
                 </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label stacked>Opções de Parcelamento</ion-label>
+                    <ion-select name="parcelamento" [(ngModel)]="dadosPedido.parcelamento">
+                      <ion-option value="{{dadosPedido.totalPedido}}">R$ {{dadosPedido.totalPedido |moneyptbr}} à vista</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/2}}">2x de R$ {{dadosPedido.totalPedido/2 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/3}}">3x de R$ {{dadosPedido.totalPedido/3 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/4}}">4x de R$ {{dadosPedido.totalPedido/4 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/5}}">5x de R$ {{dadosPedido.totalPedido/5 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/6}}">6x de R$ {{dadosPedido.totalPedido/6 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/7}}">7x de R$ {{dadosPedido.totalPedido/7 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/8}}">8x de R$ {{dadosPedido.totalPedido/8 |moneyptbr}}</ion-option>
+                      <ion-option value="{{dadosPedido.totalPedido/10}}">10x de R$ {{dadosPedido.totalPedido/10 |moneyptbr}}</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
                 <ion-col col-12 text-center>
                   <hr>
-                    <button ion-button>Finalizar</button>
+                  <button ion-button (click)="finalizarPedido()">Finalizar</button>
                 </ion-col>
               </ion-row>
-        </ion-card-content>
-      </ion-card>
+            </ion-card-content>
+          </ion-card>
     </ion-row>
   </ion-grid>
 </ion-content>

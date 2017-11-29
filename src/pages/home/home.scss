@@ -34,15 +34,24 @@ ion-slide swiper-slide{
 }
 .preco{
     margin-top:-5px;
-    background-color: rgba(185, 183, 183, 0.2);
     border-bottom-left-radius:7px;
     border-bottom-right-radius:7px;
     text-align:center;
+    background-color:#004d40;
+    color:white;
 }
 .EsconderCol{
     display:none;
 }
 .filtro{
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.menuButton{
     display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;

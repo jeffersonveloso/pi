@@ -2,6 +2,8 @@ import { CartProvider } from './../../providers/cart/cart';
 import { Component } from '@angular/core';
 import { LoadingController, NavController, ActionSheetController, ToastController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
+import { ModalController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -11,6 +13,7 @@ import { ProductProvider } from '../../providers/product/product';
   ]
 })
 export class HomePage {
+  autenticado:string;
   grid = true;
   buscarProduto: string = '';
   public listaprodutos: any = [];
@@ -23,8 +26,10 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController,
-    public carrinho:CartProvider
+    public carrinho:CartProvider,
+    public modalCtrl: ModalController
   ) {
+    this.autenticado = localStorage.getItem('autenticado');
     this.getProduct();
 
   }
@@ -135,10 +140,18 @@ export class HomePage {
         return (item.nomeProduto.toLowerCase().indexOf(this.buscarProduto.toLowerCase()) > -1);
       })
       this.comFiltro = true;
-
     } else if (this.buscarProduto === '') {
       this.listaprodutos = this.semFiltro;
       this.comFiltro = false;
+    }
+  }
+  openModal() {
+    if(this.autenticado){
+      let modal = this.modalCtrl.create('SettingsPage');
+      modal.present();
+    }else{
+      let modal = this.modalCtrl.create('LoginPage');
+      modal.present();
     }
   }
 }

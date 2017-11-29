@@ -1,4 +1,3 @@
-import { HomePage } from './../home/home';
 import { DadosPessoaService } from './dados-pessoa.service';
 import { Municipio } from './../../domain/municipio';
 import { Uf } from './../../domain/uf';
@@ -89,7 +88,7 @@ export class CadastroUserPage {
     this.dadosPessoaService.save(this.dadosPessoa).$observable.subscribe(res => {
       this.dadosPessoa = res;
       localStorage.setItem('autenticado',"true");
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot('HomePage');
     },
       error => {
         console.log('Error ao salvar os dados gerais da pessoa.')

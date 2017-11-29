@@ -32,9 +32,9 @@ export class DetalhesPage {
   aumentarQnt(item:number){
     this.produtos.map((row)=>{
       if(row.produto.idProduto == item){
-        row.quantidade++;
+        row.quantidade+=1;
       }});
-      this.quantidade++;
+      this.quantidade+=1;
       localStorage.setItem('carrinho',JSON.stringify(this.produtos));
   }
   diminuirQnt(item){

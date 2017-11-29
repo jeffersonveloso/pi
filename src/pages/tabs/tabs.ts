@@ -1,10 +1,7 @@
 import { Events } from 'ionic-angular';
 import { Component } from '@angular/core';
-
-import {AboutPage } from '../about/about';
-import {HomePage } from '../home/home';
-import {FeedPage} from '../feed/feed';
-import {CartPage} from '../cart/cart';
+import { HomePage } from '../home/home';
+import { AboutPage } from '../about/about';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -12,8 +9,8 @@ import {CartPage} from '../cart/cart';
 export class TabsPage {
   cartQnt=0;
   tab1Root = HomePage;
-  tab2Root = FeedPage;
-  tab3Root = CartPage;
+  tab2Root = 'MeusPedidosPage';
+  tab3Root = 'CartPage';
   tab4Root = AboutPage;
 
   constructor(public events:Events) {
